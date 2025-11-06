@@ -1,5 +1,5 @@
-import { AdbClient } from '../adb/client.js';
-import { validateDeviceId, validateScreenCaptureOptions, validateScreenRecordOptions } from '../utils/validation.js';
+import { AdbClient } from '../adb/client';
+import { validateDeviceId, validateScreenCaptureOptions, validateScreenRecordOptions } from '../utils/validation';
 import { join } from 'path';
 import { randomUUID } from 'crypto';
 

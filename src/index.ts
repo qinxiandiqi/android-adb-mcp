@@ -15,6 +15,7 @@ import fileTools from './tools/file-tools.js';
 import appTools from './tools/app-tools.js';
 import mediaTools from './tools/media-tools.js';
 import logTools from './tools/log-tools.js';
+import advancedTools from './tools/advanced-tools.js';
 
 class AdbMcpServer {
   private server: Server;
@@ -64,6 +65,7 @@ class AdbMcpServer {
         ...Object.values(appTools),
         ...Object.values(mediaTools),
         ...Object.values(logTools),
+        ...Object.values(advancedTools),
       ];
 
       return {
@@ -88,6 +90,7 @@ class AdbMcpServer {
           ...appTools,
           ...mediaTools,
           ...logTools,
+          ...advancedTools,
         };
 
         const tool = allTools[name as keyof typeof allTools];

@@ -1,5 +1,5 @@
-import { AdbClient } from '../adb/client.js';
-import { validateDeviceId, validateHost, validatePort } from '../utils/validation.js';
+import { AdbClient } from '../adb/client';
+import { validateDeviceId, validateHost, validatePort } from '../utils/validation';
 
 const deviceTools = {
   /**

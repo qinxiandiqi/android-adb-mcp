@@ -1,0 +1,35 @@
+{
+  "entryPoints": ["src/index.ts"],
+  "out": "docs",
+  "excludePrivate": true,
+  "excludeProtected": true,
+  "excludeInternal": true,
+  "excludeExternals": true,
+  "readme": "README.md",
+  "name": "ADB MCP Server",
+  "tsconfig": "tsconfig.json",
+  "theme": "default",
+  "includeVersion": true,
+  "sort": ["source-order"],
+  "categorizeByGroup": true,
+  "defaultCategory": "Other",
+  "categoryOrder": [
+    "ADB Client",
+    "Device Tools",
+    "Shell Tools",
+    "File Tools",
+    "App Tools",
+    "Media Tools",
+    "Log Tools",
+    "Advanced Tools",
+    "Utilities",
+    "*"
+  ],
+  "plugin": ["typedoc-plugin-markdown"],
+  "gitRevision": "main",
+  "sourceLinkTemplate": "https://github.com/{gitUser}/{gitRepo}/blob/{gitRevision}/{path}#L{line}",
+  "navigation": {
+    "includeCategories": true,
+    "includeGroups": true
+  }
+}

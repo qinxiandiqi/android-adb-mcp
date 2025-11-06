@@ -96,3 +96,20 @@ jspm_packages/
 
 # Jest
 jest/
+
+# Documentation
+docs/
+.typedoc/
+
+# Benchmark results
+benchmark-results.json
+*.benchmark
+
+# TypeScript
+*.tsbuildinfo
+
+# Temporary folders
+tmp/
+temp/
+
+*.local.json

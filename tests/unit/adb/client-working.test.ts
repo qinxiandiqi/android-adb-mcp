@@ -1,4 +1,4 @@
-import { AdbClient } from '../../src/adb/client';
+import { AdbClient } from '@/adb/client';
 
 describe('AdbClient Working Test', () => {
   let adbClient: AdbClient;

@@ -1,6 +1,6 @@
-import { AdbClient } from '../adb/client.js';
-import { validateDeviceId, validateFilePath } from '../utils/validation.js';
-import { FileInfo } from '../adb/types.js';
+import { AdbClient } from '../adb/client';
+import { validateDeviceId, validateFilePath } from '../utils/validation';
+import { FileInfo } from '../adb/types';
 
 const fileTools = {
   /**

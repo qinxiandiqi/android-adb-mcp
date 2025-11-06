@@ -32,7 +32,8 @@ module.exports = {
   extensionsToTreatAsEsm: ['.ts'],
   globals: {
     'ts-jest': {
-      useESM: true
+      useESM: false,
+      tsconfig: 'tsconfig.json'
     }
   }
 };

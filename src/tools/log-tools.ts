@@ -1,6 +1,6 @@
-import { AdbClient } from '../adb/client.js';
-import { validateDeviceId, validateLogFilter } from '../utils/validation.js';
-import { LogEntry } from '../adb/types.js';
+import { AdbClient } from '../adb/client';
+import { validateDeviceId, validateLogFilter } from '../utils/validation';
+import { LogEntry } from '../adb/types';
 
 const logTools = {
   /**

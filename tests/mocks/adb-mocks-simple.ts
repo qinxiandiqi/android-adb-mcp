@@ -1,5 +1,5 @@
 import { spawn } from 'child_process';
-import { AdbCommandResult, AppInfo, LogEntry } from '../../src/adb/types';
+import { AdbCommandResult, AppInfo, LogEntry } from '@/adb/types';
 
 // Define DeviceInfo interface since it's not exported
 export interface DeviceInfo {
