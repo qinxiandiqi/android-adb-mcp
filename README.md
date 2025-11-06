@@ -2,7 +2,7 @@
 
 [![Build Status](https://github.com/qinxiandiqi/adb-mcp/workflows/CI/badge.svg)](https://github.com/qinxiandiqi/adb-mcp/actions)
 [![codecov](https://codecov.io/gh/qinxiandiqi/adb-mcp/branch/main/graph/badge.svg)](https://codecov.io/gh/qinxiandiqi/adb-mcp)
-[![npm version](https://badge.fury.io/js/%40qinxiandiqi%2Fadb-mcp.svg)](https://badge.fury.io/js/%40qinxiandiqi%2Fadb-mcp)
+[![npm version](https://badge.fury.io/js/android-adb-mcp.svg)](https://badge.fury.io/js/android-adb-mcp)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 > 🚀 **Production-Ready MCP Server for Android Device Management**
@@ -14,7 +14,7 @@
 ### 直接运行（无需安装）
 
 ```bash
-npx @qinxiandiqi/adb-mcp
+npx android-adb-mcp
 ```
 
 ### Claude Desktop 配置
@@ -26,7 +26,7 @@ npx @qinxiandiqi/adb-mcp
   "mcpServers": {
     "android-devices": {
       "command": "npx",
-      "args": ["@qinxiandiqi/adb-mcp"],
+      "args": ["android-adb-mcp"],
       "env": {
         "ADB_PATH": "/usr/local/bin/adb"
       }
@@ -124,33 +124,33 @@ npx @qinxiandiqi/adb-mcp
 
 ```bash
 # 直接运行（无需安装）
-npx @qinxiandiqi/adb-mcp
+npx android-adb-mcp
 
 # 或者指定 ADB 路径
-ADB_PATH=/path/to/adb npx @qinxiandiqi/adb-mcp
+ADB_PATH=/path/to/adb npx android-adb-mcp
 ```
 
 #### 方式二：全局安装
 
 ```bash
 # 全局安装
-npm install -g @qinxiandiqi/adb-mcp
+npm install -g android-adb-mcp
 
 # 启动服务
-adb-mcp
+android-adb-mcp
 
 # 或者使用 npx
-npx adb-mcp
+npx android-adb-mcp
 ```
 
 #### 方式三：项目本地安装
 
 ```bash
 # 本地安装
-npm install @qinxiandiqi/adb-mcp
+npm install android-adb-mcp
 
 # 启动服务
-npx @qinxiandiqi/adb-mcp
+npx android-adb-mcp
 ```
 
 #### 方式四：从源码构建
@@ -273,7 +273,7 @@ docker run -d --name adb-mcp --privileged -v /dev/bus/usb:/dev/bus/usb adb-mcp
   "mcpServers": {
     "android-devices": {
       "command": "npx",
-      "args": ["@qinxiandiqi/adb-mcp"],
+      "args": ["android-adb-mcp"],
       "env": {
         "ADB_PATH": "/path/to/platform-tools/adb",
         "LOG_LEVEL": "debug"
@@ -289,7 +289,7 @@ docker run -d --name adb-mcp --privileged -v /dev/bus/usb:/dev/bus/usb adb-mcp
 {
   "mcpServers": {
     "android-devices": {
-      "command": "adb-mcp",
+      "command": "android-adb-mcp",
       "args": [],
       "env": {
         "ADB_PATH": "/path/to/platform-tools/adb",
@@ -307,7 +307,7 @@ docker run -d --name adb-mcp --privileged -v /dev/bus/usb:/dev/bus/usb adb-mcp
   "mcpServers": {
     "android-devices": {
       "command": "node",
-      "args": ["./node_modules/@qinxiandiqi/adb-mcp/dist/src/index.js"],
+      "args": ["./node_modules/android-adb-mcp/dist/src/index.js"],
       "env": {
         "ADB_PATH": "/path/to/platform-tools/adb",
         "LOG_LEVEL": "debug"
@@ -343,7 +343,7 @@ docker run -d --name adb-mcp --privileged -v /dev/bus/usb:/dev/bus/usb adb-mcp
   "mcpServers": {
     "android-devices": {
       "command": "npx",
-      "args": ["@qinxiandiqi/adb-mcp"],
+      "args": ["android-adb-mcp"],
       "env": {
         "ADB_PATH": "/usr/local/bin/adb"
       }
@@ -359,7 +359,7 @@ docker run -d --name adb-mcp --privileged -v /dev/bus/usb:/dev/bus/usb adb-mcp
   "mcpServers": {
     "android-devices": {
       "command": "npx",
-      "args": ["@qinxiandiqi/adb-mcp"],
+      "args": ["android-adb-mcp"],
       "env": {
         "ADB_PATH": "/usr/local/bin/adb",
         "ADB_HOST": "localhost",
