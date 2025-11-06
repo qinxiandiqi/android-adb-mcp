@@ -6,7 +6,7 @@ import {
   CallToolRequestSchema,
   ListToolsRequestSchema,
   McpError,
-  ErrorCode,
+  ErrorCode
 } from '@modelcontextprotocol/sdk/types.js';
 
 import deviceTools from './tools/device-tools.js';
@@ -24,12 +24,12 @@ class AdbMcpServer {
     this.server = new Server(
       {
         name: 'adb-mcp',
-        version: '1.0.0',
+        version: '1.0.0'
       },
       {
         capabilities: {
-          tools: {},
-        },
+          tools: {}
+        }
       }
     );
 
@@ -65,15 +65,15 @@ class AdbMcpServer {
         ...Object.values(appTools),
         ...Object.values(mediaTools),
         ...Object.values(logTools),
-        ...Object.values(advancedTools),
+        ...Object.values(advancedTools)
       ];
 
       return {
         tools: allTools.map(tool => ({
           name: tool.name,
           description: tool.description,
-          inputSchema: tool.inputSchema,
-        })),
+          inputSchema: tool.inputSchema
+        }))
       };
     });
 
@@ -90,11 +90,11 @@ class AdbMcpServer {
           ...appTools,
           ...mediaTools,
           ...logTools,
-          ...advancedTools,
+          ...advancedTools
         };
 
         const tool = allTools[name as keyof typeof allTools];
-        
+
         if (!tool) {
           throw new McpError(
             ErrorCode.MethodNotFound,
@@ -109,15 +109,15 @@ class AdbMcpServer {
           content: [
             {
               type: 'text',
-              text: JSON.stringify(result, null, 2),
-            },
-          ],
+              text: JSON.stringify(result, null, 2)
+            }
+          ]
         };
       } catch (error) {
         console.error(`Error executing tool '${name}':`, error);
-        
+
         const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
-        
+
         return {
           content: [
             {
@@ -126,11 +126,11 @@ class AdbMcpServer {
                 success: false,
                 error: errorMessage,
                 tool: name,
-                arguments: args,
-              }, null, 2),
-            },
+                arguments: args
+              }, null, 2)
+            }
           ],
-          isError: true,
+          isError: true
         };
       }
     });

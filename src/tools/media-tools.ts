@@ -37,11 +37,11 @@ const mediaTools = {
       },
       required: []
     },
-    handler: async (args: { 
-      outputPath?: string; 
-      format?: string; 
-      quality?: number; 
-      deviceId?: string; 
+    handler: async (args: {
+      outputPath?: string;
+      format?: string;
+      quality?: number;
+      deviceId?: string;
     }) => {
       const deviceId = args.deviceId ? validateDeviceId(args.deviceId) : undefined;
       const options = validateScreenCaptureOptions({
@@ -60,11 +60,11 @@ const mediaTools = {
 
       // Generate temp filename if not provided
       const outputPath = args.outputPath || join(process.cwd(), `screenshot_${randomUUID()}.${options.format}`);
-      
+
       // Capture screenshot to device temp location
       const deviceTempPath = `/sdcard/screenshot_${randomUUID()}.${options.format}`;
       const captureCommand = `screencap -p ${deviceTempPath}`;
-      
+
       const captureResult = await client.executeShell(captureCommand, deviceId);
       if (!captureResult.success) {
         throw new Error(`Failed to capture screenshot: ${captureResult.stderr}`);
@@ -142,13 +142,13 @@ const mediaTools = {
       },
       required: []
     },
-    handler: async (args: { 
-      duration?: number; 
-      bitrate?: number; 
-      size?: string; 
-      rotation?: number; 
-      outputPath?: string; 
-      deviceId?: string; 
+    handler: async (args: {
+      duration?: number;
+      bitrate?: number;
+      size?: string;
+      rotation?: number;
+      outputPath?: string;
+      deviceId?: string;
     }) => {
       const deviceId = args.deviceId ? validateDeviceId(args.deviceId) : undefined;
       const options = validateScreenRecordOptions({
@@ -172,29 +172,29 @@ const mediaTools = {
       const deviceTempPath = `/sdcard/screenrecord_${randomUUID()}.mp4`;
 
       // Build screenrecord command
-      let recordCommand = `screenrecord`;
-      
+      let recordCommand = 'screenrecord';
+
       if (options.duration) {
         recordCommand += ` --time-limit ${options.duration}`;
       }
-      
+
       if (options.bitrate) {
         recordCommand += ` --bit-rate ${options.bitrate * 1000000}`; // Convert to bps
       }
-      
+
       if (options.size) {
         recordCommand += ` --size ${options.size}`;
       }
-      
+
       if (options.rotation !== undefined) {
         recordCommand += ` --rotate ${options.rotation}`;
       }
-      
+
       recordCommand += ` ${deviceTempPath}`;
 
       // Start recording
       const recordResult = await client.executeShell(recordCommand, deviceId);
-      
+
       if (!recordResult.success && recordResult.exitCode !== 0) {
         // screenrecord exits with code 0 when interrupted (Ctrl+C), which is normal
         if (!recordResult.stderr.includes('Interrupted')) {
@@ -335,7 +335,7 @@ const mediaTools = {
 
       const command = `wm density ${args.density}`;
       const result = await client.executeShell(command, deviceId);
-      
+
       return {
         success: result.success,
         data: {
@@ -379,7 +379,7 @@ const mediaTools = {
 
       const command = 'wm density reset';
       const result = await client.executeShell(command, deviceId);
-      
+
       return {
         success: result.success,
         data: {

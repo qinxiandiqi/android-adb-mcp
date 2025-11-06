@@ -37,7 +37,7 @@ const appTools = {
       }
 
       let command = 'pm list packages -f';
-      
+
       if (args.filter === 'system') {
         command += ' -s';
       } else if (args.filter === 'user') {
@@ -47,7 +47,7 @@ const appTools = {
       }
 
       const result = await client.executeShell(command, deviceId);
-      
+
       if (!result.success) {
         throw new Error(`Failed to list apps: ${result.stderr}`);
       }
@@ -60,9 +60,9 @@ const appTools = {
         const match = line.match(/^package:(.+?)=(.+)$/);
         if (match) {
           const packageName = match[2];
-          
+
           apps.push({
-            packageName,
+            packageName
             // Additional info would require more commands
           });
         }
@@ -115,7 +115,7 @@ const appTools = {
 
       // Get package info
       const dumpsysResult = await client.executeShell(`dumpsys package ${packageName}`, deviceId);
-      
+
       if (!dumpsysResult.success) {
         throw new Error(`Failed to get app info: ${dumpsysResult.stderr}`);
       }
@@ -203,13 +203,13 @@ const appTools = {
       },
       required: ['apkPath']
     },
-    handler: async (args: { 
-      apkPath: string; 
-      deviceId?: string; 
-      replace?: boolean; 
-      test?: boolean; 
-      grantPermissions?: boolean; 
-      allowDowngrade?: boolean; 
+    handler: async (args: {
+      apkPath: string;
+      deviceId?: string;
+      replace?: boolean;
+      test?: boolean;
+      grantPermissions?: boolean;
+      allowDowngrade?: boolean;
     }) => {
       const deviceId = args.deviceId ? validateDeviceId(args.deviceId) : undefined;
       const apkPath = validateFilePath(args.apkPath);
@@ -229,7 +229,7 @@ const appTools = {
         grantPermissions: args.grantPermissions,
         allowDowngrade: args.allowDowngrade
       });
-      
+
       return {
         success: result.success,
         data: {
@@ -289,7 +289,7 @@ const appTools = {
       }
 
       const result = await client.uninstallApp(packageName, deviceId, keepData);
-      
+
       return {
         success: result.success,
         data: {
@@ -349,7 +349,7 @@ const appTools = {
       }
 
       const result = await client.executeShell(command, deviceId);
-      
+
       return {
         success: result.success,
         data: {
@@ -399,7 +399,7 @@ const appTools = {
 
       const command = `am force-stop ${packageName}`;
       const result = await client.executeShell(command, deviceId);
-      
+
       return {
         success: result.success,
         data: {
@@ -448,7 +448,7 @@ const appTools = {
 
       const command = `pm clear ${packageName}`;
       const result = await client.executeShell(command, deviceId);
-      
+
       return {
         success: result.success,
         data: {

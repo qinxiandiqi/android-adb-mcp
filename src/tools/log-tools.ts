@@ -45,13 +45,13 @@ const logTools = {
       },
       required: []
     },
-    handler: async (args: { 
-      level?: string; 
-      tag?: string; 
-      packageName?: string; 
-      since?: string; 
-      count?: number; 
-      deviceId?: string; 
+    handler: async (args: {
+      level?: string;
+      tag?: string;
+      packageName?: string;
+      since?: string;
+      count?: number;
+      deviceId?: string;
     }) => {
       const deviceId = args.deviceId ? validateDeviceId(args.deviceId) : undefined;
       const filter = validateLogFilter({
@@ -73,25 +73,25 @@ const logTools = {
 
       // Build logcat command
       let command = 'logcat -d'; // -d for dump and exit
-      
+
       if (filter.level) {
         command += ` *:${filter.level}`;
       }
-      
+
       if (filter.tag) {
         command += ` ${filter.tag}:*`;
       }
-      
+
       if (filter.packageName) {
         command += ` --pid=$(pidof ${filter.packageName})`;
       }
-      
+
       if (filter.since) {
         command += ` -t "${filter.since}"`;
       }
 
       const result = await client.executeShell(command, deviceId);
-      
+
       if (!result.success) {
         throw new Error(`Failed to get logs: ${result.stderr}`);
       }
@@ -99,13 +99,13 @@ const logTools = {
       // Parse log entries
       const lines = result.stdout.split('\n');
       const logs: LogEntry[] = [];
-      
+
       for (const line of lines) {
-        if (!line.trim()) continue;
-        
+        if (!line.trim()) {continue;}
+
         // Parse logcat format: mm-dd hh:mm:ss.sss pid tid level tag: message
         const match = line.match(/^(\d{2}-\d{2}\s+\d{2}:\d{2}:\d{2}\.\d{3})\s+(\d+)\s+(\d+)\s+([VDIWE])\s+([^:]+):\s*(.*)$/);
-        
+
         if (match) {
           logs.push({
             timestamp: match[1],
@@ -171,7 +171,7 @@ const logTools = {
 
       const command = buffer === 'all' ? 'logcat -c' : `logcat -b ${buffer} -c`;
       const result = await client.executeShell(command, deviceId);
-      
+
       return {
         success: result.success,
         data: {
@@ -228,13 +228,13 @@ const logTools = {
 
       // Get dropbox crash logs
       let command = 'dumpsys dropbox --proto data_app_crash';
-      
+
       if (args.packageName) {
         command += ` | grep ${args.packageName}`;
       }
 
       const result = await client.executeShell(command, deviceId);
-      
+
       if (!result.success) {
         throw new Error(`Failed to get crash logs: ${result.stderr}`);
       }
@@ -242,9 +242,9 @@ const logTools = {
       // Parse crash logs (simplified parsing)
       const lines = result.stdout.split('\n');
       const crashLogs: any[] = [];
-      
+
       let currentCrash: any = null;
-      
+
       for (const line of lines) {
         if (line.includes('data_app_crash')) {
           if (currentCrash) {
@@ -258,7 +258,7 @@ const logTools = {
           currentCrash.details.push(line.trim());
         }
       }
-      
+
       if (currentCrash) {
         crashLogs.push(currentCrash);
       }
@@ -321,13 +321,13 @@ const logTools = {
 
       // Get dropbox ANR logs
       let command = 'dumpsys dropbox --proto data_app_anr';
-      
+
       if (args.packageName) {
         command += ` | grep ${args.packageName}`;
       }
 
       const result = await client.executeShell(command, deviceId);
-      
+
       if (!result.success) {
         throw new Error(`Failed to get ANR logs: ${result.stderr}`);
       }
@@ -335,9 +335,9 @@ const logTools = {
       // Parse ANR logs (simplified parsing)
       const lines = result.stdout.split('\n');
       const anrLogs: any[] = [];
-      
+
       let currentAnr: any = null;
-      
+
       for (const line of lines) {
         if (line.includes('data_app_anr')) {
           if (currentAnr) {
@@ -351,7 +351,7 @@ const logTools = {
           currentAnr.details.push(line.trim());
         }
       }
-      
+
       if (currentAnr) {
         anrLogs.push(currentAnr);
       }
@@ -409,7 +409,7 @@ const logTools = {
 
       const command = `dmesg | tail -n ${count}`;
       const result = await client.executeShell(command, deviceId);
-      
+
       if (!result.success) {
         throw new Error(`Failed to get kernel logs: ${result.stderr}`);
       }

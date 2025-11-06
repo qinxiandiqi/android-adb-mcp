@@ -18,7 +18,7 @@ export class AdbClient {
    */
   async executeCommand(command: string, options: AdbOptions = {}): Promise<AdbCommandResult> {
     const { deviceId, timeout = 30000 } = options;
-    
+
     let fullCommand = this.adbPath;
     if (deviceId) {
       fullCommand += ` -s ${deviceId}`;
@@ -96,10 +96,10 @@ export class AdbClient {
 
     for (let i = 1; i < lines.length; i++) {
       const line = lines[i].trim();
-      if (!line) continue;
+      if (!line) {continue;}
 
       const parts = line.split(/\s+/);
-      if (parts.length < 2) continue;
+      if (parts.length < 2) {continue;}
 
       const deviceId = parts[0];
       const status = parts[1] as Device['status'];
@@ -222,14 +222,14 @@ export class AdbClient {
     grantPermissions?: boolean;
   } = {}): Promise<AdbCommandResult> {
     let command = 'install';
-    
-    if (options.replace) command += ' -r';
-    if (options.test) command += ' -t';
-    if (options.allowDowngrade) command += ' -d';
-    if (options.grantPermissions) command += ' -g';
-    
+
+    if (options.replace) {command += ' -r';}
+    if (options.test) {command += ' -t';}
+    if (options.allowDowngrade) {command += ' -d';}
+    if (options.grantPermissions) {command += ' -g';}
+
     command += ` "${apkPath}"`;
-    
+
     return this.executeCommand(command, { deviceId });
   }
 

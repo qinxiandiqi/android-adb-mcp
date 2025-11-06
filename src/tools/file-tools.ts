@@ -38,7 +38,7 @@ const fileTools = {
       }
 
       const result = await client.executeShell(`ls -la "${path}"`, deviceId);
-      
+
       if (!result.success) {
         throw new Error(`Failed to list files: ${result.stderr}`);
       }
@@ -46,11 +46,11 @@ const fileTools = {
       // Parse file list
       const lines = result.stdout.split('\n');
       const files: FileInfo[] = [];
-      
+
       // Skip header lines
       for (let i = 0; i < lines.length; i++) {
         const line = lines[i].trim();
-        if (!line || line.startsWith('total')) continue;
+        if (!line || line.startsWith('total')) {continue;}
 
         const parts = line.split(/\s+/);
         if (parts.length >= 9) {
@@ -131,7 +131,7 @@ const fileTools = {
       }
 
       const result = await client.pushFile(localPath, remotePath, deviceId);
-      
+
       return {
         success: result.success,
         data: {
@@ -185,7 +185,7 @@ const fileTools = {
       }
 
       const result = await client.pullFile(remotePath, localPath, deviceId);
-      
+
       return {
         success: result.success,
         data: {
@@ -234,7 +234,7 @@ const fileTools = {
       }
 
       const result = await client.executeShell(`mkdir -p "${path}"`, deviceId);
-      
+
       return {
         success: result.success,
         data: {
@@ -289,7 +289,7 @@ const fileTools = {
 
       const command = recursive ? `rm -rf "${path}"` : `rm -f "${path}"`;
       const result = await client.executeShell(command, deviceId);
-      
+
       return {
         success: result.success,
         data: {
@@ -338,7 +338,7 @@ const fileTools = {
       }
 
       const result = await client.executeShell(`stat "${path}"`, deviceId);
-      
+
       if (!result.success) {
         throw new Error(`Failed to get file info: ${result.stderr}`);
       }

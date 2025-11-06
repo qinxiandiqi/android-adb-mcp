@@ -10,17 +10,17 @@ const deviceTools = {
     description: 'List all connected Android devices',
     inputSchema: {
       type: 'object' as const,
-      properties: {},
+      properties: {}
     },
     handler: async () => {
       const client = new AdbClient();
-      
+
       if (!await client.isAvailable()) {
         throw new Error('ADB is not available. Please ensure Android SDK is installed and ADB is in your PATH.');
       }
 
       const devices = await client.getDevices();
-      
+
       return {
         success: true,
         data: {
@@ -104,7 +104,7 @@ const deviceTools = {
       }
 
       const success = await client.connect(host, port);
-      
+
       return {
         success,
         data: {
@@ -147,7 +147,7 @@ const deviceTools = {
       }
 
       const success = await client.disconnect(host, port);
-      
+
       return {
         success,
         data: {
@@ -190,7 +190,7 @@ const deviceTools = {
       }
 
       const success = await client.waitForDevice(deviceId, timeout);
-      
+
       return {
         success,
         data: {
@@ -229,7 +229,7 @@ const deviceTools = {
       const isConnected = await client.isDeviceConnected(deviceId);
       const devices = await client.getDevices();
       const device = devices.find(d => d.id === deviceId);
-      
+
       return {
         success: true,
         data: {

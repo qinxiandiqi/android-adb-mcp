@@ -522,95 +522,60 @@ const advancedTools = {
       const { action, host, port = 5555, pairingPort = 4321, code } = args;
 
       switch (action) {
-        case 'list': {
-          const devices = await client.getDevices();
-          const wirelessDevices: WirelessConnection[] = [];
+      case 'list': {
+        const devices = await client.getDevices();
+        const wirelessDevices: WirelessConnection[] = [];
 
-          for (const device of devices) {
-            if (device.id.includes(':') || device.id.match(/^\d+\.\d+\.\d+\.\d+:\d+$/)) {
-              const [ip, devicePort] = device.id.split(':');
-              wirelessDevices.push({
-                deviceId: device.id,
-                ipAddress: ip,
-                port: parseInt(devicePort || port.toString()),
-                paired: true,
-                connected: device.status === 'device',
-                lastSeen: new Date().toISOString()
-              });
-            }
+        for (const device of devices) {
+          if (device.id.includes(':') || device.id.match(/^\d+\.\d+\.\d+\.\d+:\d+$/)) {
+            const [ip, devicePort] = device.id.split(':');
+            wirelessDevices.push({
+              deviceId: device.id,
+              ipAddress: ip,
+              port: parseInt(devicePort || port.toString()),
+              paired: true,
+              connected: device.status === 'device',
+              lastSeen: new Date().toISOString()
+            });
           }
-
-          return {
-            success: true,
-            data: {
-              wirelessDevices,
-              count: wirelessDevices.length
-            }
-          };
         }
 
-        case 'connect': {
-          if (!host) {
-            throw new Error('Host is required for connect action');
+        return {
+          success: true,
+          data: {
+            wirelessDevices,
+            count: wirelessDevices.length
           }
+        };
+      }
 
-          const success = await client.connect(host, port);
-
-          return {
-            success,
-            data: {
-              action: 'connect',
-              host,
-              port,
-              connected: success,
-              timestamp: new Date().toISOString()
-            }
-          };
+      case 'connect': {
+        if (!host) {
+          throw new Error('Host is required for connect action');
         }
 
-        case 'disconnect': {
-          if (!host) {
-            // Disconnect all wireless connections
-            const result = await client.executeCommand('disconnect');
-            return {
-              success: result.success,
-              data: {
-                action: 'disconnect_all',
-                stdout: result.stdout,
-                stderr: result.stderr,
-                exitCode: result.exitCode
-              }
-            };
+        const success = await client.connect(host, port);
+
+        return {
+          success,
+          data: {
+            action: 'connect',
+            host,
+            port,
+            connected: success,
+            timestamp: new Date().toISOString()
           }
+        };
+      }
 
-          const success = await client.disconnect(host, port);
-
-          return {
-            success,
-            data: {
-              action: 'disconnect',
-              host,
-              port,
-              disconnected: success,
-              timestamp: new Date().toISOString()
-            }
-          };
-        }
-
-        case 'pair': {
-          if (!host || !code) {
-            throw new Error('Host and pairing code are required for pair action');
-          }
-
-          const result = await client.executeCommand(`pair ${host}:${pairingPort} ${code}`);
-
+      case 'disconnect': {
+        if (!host) {
+          // Disconnect all wireless connections
+          const result = await client.executeCommand('disconnect');
           return {
             success: result.success,
             data: {
-              action: 'pair',
-              host,
-              pairingPort,
-              paired: result.success,
+              action: 'disconnect_all',
               stdout: result.stdout,
               stderr: result.stderr,
               exitCode: result.exitCode
@@ -618,8 +583,43 @@ const advancedTools = {
           };
         }
 
-        default:
-          throw new Error(`Unknown action: ${action}`);
+        const success = await client.disconnect(host, port);
+
+        return {
+          success,
+          data: {
+            action: 'disconnect',
+            host,
+            port,
+            disconnected: success,
+            timestamp: new Date().toISOString()
+          }
+        };
+      }
+
+      case 'pair': {
+        if (!host || !code) {
+          throw new Error('Host and pairing code are required for pair action');
+        }
+
+        const result = await client.executeCommand(`pair ${host}:${pairingPort} ${code}`);
+
+        return {
+          success: result.success,
+          data: {
+            action: 'pair',
+            host,
+            pairingPort,
+            paired: result.success,
+            stdout: result.stdout,
+            stderr: result.stderr,
+            exitCode: result.exitCode
+          }
+        };
+      }
+
+      default:
+        throw new Error(`Unknown action: ${action}`);
       }
     }
   },

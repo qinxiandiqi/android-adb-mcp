@@ -36,7 +36,7 @@ const shellTools = {
       }
 
       const result = await client.executeShell(command, deviceId);
-      
+
       return {
         success: result.success,
         data: {
@@ -84,7 +84,7 @@ const shellTools = {
 
       const command = args.property ? `getprop ${args.property}` : 'getprop';
       const result = await client.executeShell(command, deviceId);
-      
+
       if (!result.success) {
         throw new Error(`Failed to get system properties: ${result.stderr}`);
       }
@@ -140,7 +140,7 @@ const shellTools = {
       }
 
       const result = await client.executeShell('ps -A', deviceId);
-      
+
       if (!result.success) {
         throw new Error(`Failed to list processes: ${result.stderr}`);
       }
@@ -148,11 +148,11 @@ const shellTools = {
       // Parse process list
       const lines = result.stdout.split('\n');
       const processes: any[] = [];
-      
+
       // Skip header line
       for (let i = 1; i < lines.length; i++) {
         const line = lines[i].trim();
-        if (!line) continue;
+        if (!line) {continue;}
 
         const parts = line.split(/\s+/);
         if (parts.length >= 9) {
@@ -210,7 +210,7 @@ const shellTools = {
       }
 
       const result = await client.executeShell('cat /proc/meminfo', deviceId);
-      
+
       if (!result.success) {
         throw new Error(`Failed to get memory info: ${result.stderr}`);
       }
@@ -274,7 +274,7 @@ const shellTools = {
       }
 
       const result = await client.executeShell(`df -h "${path}"`, deviceId);
-      
+
       if (!result.success) {
         throw new Error(`Failed to get disk usage: ${result.stderr}`);
       }
@@ -282,11 +282,11 @@ const shellTools = {
       // Parse disk usage
       const lines = result.stdout.split('\n');
       const diskInfo: any[] = [];
-      
+
       // Skip header line
       for (let i = 1; i < lines.length; i++) {
         const line = lines[i].trim();
-        if (!line) continue;
+        if (!line) {continue;}
 
         const parts = line.split(/\s+/);
         if (parts.length >= 6) {

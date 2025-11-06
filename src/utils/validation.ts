@@ -42,10 +42,10 @@ export const shellCommandSchema = z.string().min(1).max(1000).refine(
     if (hasDangerousChars) {
       return false;
     }
-    
+
     const baseCommand = command.split(' ')[0];
-    return safeCommands.includes(baseCommand) || 
-           command.startsWith('pm ') || 
+    return safeCommands.includes(baseCommand) ||
+           command.startsWith('pm ') ||
            command.startsWith('am ') ||
            command.startsWith('dumpsys ') ||
            command.startsWith('getprop ') ||
