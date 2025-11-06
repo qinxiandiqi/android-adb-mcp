@@ -1,7 +1,7 @@
 # ADB MCP Server
 
-[![Build Status](https://github.com/qinxiandiqi/adb-mcp/workflows/CI/badge.svg)](https://github.com/qinxiandiqi/adb-mcp/actions)
-[![codecov](https://codecov.io/gh/qinxiandiqi/adb-mcp/branch/main/graph/badge.svg)](https://codecov.io/gh/qinxiandiqi/adb-mcp)
+[![Build Status](https://github.com/qinxiandiqi/android-adb-mcp/workflows/CI/badge.svg)](https://github.com/qinxiandiqi/android-adb-mcp/actions)
+[![codecov](https://codecov.io/gh/qinxiandiqi/android-adb-mcp/branch/main/graph/badge.svg)](https://codecov.io/gh/qinxiandiqi/android-adb-mcp)
 [![npm version](https://badge.fury.io/js/android-adb-mcp.svg)](https://badge.fury.io/js/android-adb-mcp)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -157,7 +157,7 @@ npx android-adb-mcp
 
 ```bash
 # 克隆项目
-git clone https://github.com/qinxiandiqi/adb-mcp.git
+git clone https://github.com/qinxiandiqi/android-adb-mcp.git
 cd adb-mcp
 
 # 安装依赖
@@ -174,7 +174,7 @@ pnpm start
 
 ```bash
 # 使用预构建镜像
-docker run -d --name adb-mcp --privileged -v /dev/bus/usb:/dev/bus/usb qinxiandiqi/adb-mcp
+docker run -d --name adb-mcp --privileged -v /dev/bus/usb:/dev/bus/usb qinxiandiqi/android-adb-mcp
 
 # 或者从源码构建
 docker build -t adb-mcp .
@@ -566,7 +566,7 @@ CMD ["node", "dist/src/index.js"]
 
 ```bash
 # 克隆项目
-git clone https://github.com/qinxiandiqi/adb-mcp.git
+git clone https://github.com/qinxiandiqi/android-adb-mcp.git
 cd adb-mcp
 
 # 安装依赖
@@ -708,8 +708,8 @@ NODE_DEBUG=net pnpm start
 
 感谢所有为这个项目做出贡献的开发者！
 
-<a href="https://github.com/qinxiandiqi/adb-mcp/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=qinxiandiqi/adb-mcp" />
+<a href="https://github.com/qinxiandiqi/android-adb-mcp/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=qinxiandiqi/android-adb-mcp" />
 </a>
 
 ## 🙏 致谢
@@ -721,9 +721,9 @@ NODE_DEBUG=net pnpm start
 
 ## 📞 支持
 
-- 🐛 [报告Bug](https://github.com/qinxiandiqi/adb-mcp/issues)
-- 💡 [功能请求](https://github.com/qinxiandiqi/adb-mcp/issues)
-- 💬 [讨论区](https://github.com/qinxiandiqi/adb-mcp/discussions)
+- 🐛 [报告Bug](https://github.com/qinxiandiqi/android-adb-mcp/issues)
+- 💡 [功能请求](https://github.com/qinxiandiqi/android-adb-mcp/issues)
+- 💬 [讨论区](https://github.com/qinxiandiqi/android-adb-mcp/discussions)
 
 ---
 

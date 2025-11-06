@@ -36,14 +36,14 @@
     "ai-tools",
     "mobile-development"
   ],
-  "author": "qinxiandiqi <https://github.com/qinxiandiqi>",
-  "homepage": "https://github.com/qinxiandiqi/adb-mcp#readme",
+  "author": "Jianan",
+  "homepage": "https://github.com/qinxiandiqi/android-adb-mcp#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/qinxiandiqi/adb-mcp.git"
+    "url": "git+https://github.com/qinxiandiqi/android-adb-mcp.git"
   },
   "bugs": {
-    "url": "https://github.com/qinxiandiqi/adb-mcp/issues"
+    "url": "https://github.com/qinxiandiqi/android-adb-mcp/issues"
   },
   "license": "MIT",
   "packageManager": "pnpm@10.15.0",
