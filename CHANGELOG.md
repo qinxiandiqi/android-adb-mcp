@@ -1,5 +1,27 @@
 # Changelog
 
+## [0.0.3] - 2025-11-06
+
+### Added
+- Automated release improvements
+- Enhanced CI/CD pipeline
+- Performance benchmarking tools
+- Advanced debugging features
+
+### Changed
+- Improved error handling
+- Updated dependencies
+
+### Fixed
+- Fixed Jest configuration issues
+- Resolved module path problems
+
+### Security
+- Enhanced input validation
+- Security audit improvements
+
+---
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
