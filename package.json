@@ -1,6 +1,6 @@
 {
   "name": "android-adb-mcp",
-  "version": "1.0.0",
+  "version": "0.0.1-alpha",
   "description": "Production-ready MCP server for Android Debug Bridge (ADB) - 35 professional tools for complete device management",
   "main": "dist/index.js",
   "type": "module",
